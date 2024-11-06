@@ -5,5 +5,17 @@
 {% endblock %}
 
 {% block content %}
+    <section>
     <h1>books_list</h1>
+
+      {% for book in books %}
+        <article class="book">
+          <img src="{{book.cover}}" alt="">
+          <p>{{book.cover}}</p>
+          <h2>{{book.title}}</h2>
+          <p>{{book.author}}</p>
+          <p>{{book.price}}</p>
+        </article>
+      {% endfor %}
+    </section>
 {% endblock  %}

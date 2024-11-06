@@ -4,14 +4,15 @@ from datetime import datetime
 
 # Create your models here.
 
-class Books(models.Model):
+class Book(models.Model):
     title = models.CharField(max_length=255)
-    author = models.ForeignKey('Authors',on_delete=models.CASCADE, null=True, blank=True)
-    isbn = models.BigIntegerField(max_length=13, unique=True)
-    genre = models.ForeignKey('Genres',on_delete=models.CASCADE, null=True, blank=True)
-    publisher = models.ForeignKey('Publishers',on_delete=models.CASCADE, null=True, blank=True)
+    author = models.ForeignKey('Author',on_delete=models.CASCADE, null=True, blank=True)
+    isbn = models.BigIntegerField(unique=True)
+    genre = models.ForeignKey('Genre',on_delete=models.CASCADE, null=True, blank=True)
+    publisher = models.ForeignKey('Publisher',on_delete=models.CASCADE, null=True, blank=True)
     publication_date = models.DateField(null=True, blank=True)
     description = models.TextField()
+    price = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     language = models.CharField(max_length=255)
     page_count = models.IntegerField(null=True, blank=True)
     cover = models.ImageField(upload_to='book_covers/', null=True, blank=True)
@@ -21,7 +22,7 @@ class Books(models.Model):
         return self.title
 
 
-class Authors(models.Model):
+class Author(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     biography = models.TextField()
@@ -31,10 +32,10 @@ class Authors(models.Model):
     slug = models.SlugField(unique=True)
 
     def __str__(self):
-        return f"{self.last_name} {self.first_name}"
+        return f"{self.first_name} {self.last_name}"
 
 
-class Publishers(models.Model):
+class Publisher(models.Model):
     title = models.CharField(max_length=255)
     address = models.CharField(max_length=255)
     year_founded = models.PositiveIntegerField(null=True, blank=True, validators=[
@@ -50,7 +51,7 @@ class Publishers(models.Model):
         return self.title
 
 
-class Genres(models.Model):
+class Genre(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
     target_audience = models.CharField(max_length=255)
