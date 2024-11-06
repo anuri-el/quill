@@ -12,7 +12,7 @@
     <nav>
       <a href="/">quill</a>
       <a href="/about">about</a>
-      <a href="/books">books_list</a>
+      <a href="{% url 'books:catalog' %}">books_list</a>
     </nav>
     <main>{% block content %} {% endblock %}</main>
   </body>

@@ -1,0 +1,20 @@
+{% extends "layout.html" %} 
+
+{% block title %}
+    {{book.title}}
+{% endblock %}
+
+{% block content %}
+    <section>
+        <img src="{{book.cover}}" alt="">
+        <p>{{book.cover}}</p>
+        
+        <p>{{book.author}}</p>
+        <p>{{book.publication_date}}</p>
+        <p>{{book.price}}</p>
+        <p>{{book.page_count}}</p>
+        <p>{{book.isbn}}</p>
+        <p>{{book.description}}</p>        
+
+    </section>
+{% endblock  %}
