@@ -6,15 +6,17 @@
 
 {% block content %}
     <section>
-        <img src="{{book.cover}}" alt="">
-        <p>{{book.cover}}</p>
-        
-        <p>{{book.author}}</p>
-        <p>{{book.publication_date}}</p>
-        <p>{{book.price}}</p>
-        <p>{{book.page_count}}</p>
-        <p>{{book.isbn}}</p>
-        <p>{{book.description}}</p>        
+        <img 
+            class="cover"
+            src="{{book.cover.url}}" 
+            alt="{{book.title}}"
+            width=150>
+        <p>author: {{book.author}}</p>
+        <p>publication_date: {{book.publication_date}}</p>
+        <p>page_count: {{book.page_count}}</p>
+        <p>isbn: {{book.isbn}}</p>
+        <p>description: {{book.description}}</p>        
+        <p>price:{{book.price}}</p>
 
     </section>
 {% endblock  %}

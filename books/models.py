@@ -14,7 +14,7 @@ class Book(models.Model):
     description = models.TextField()
     price = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     language = models.CharField(max_length=255)
-    page_count = models.IntegerField(null=True, blank=True)
+    page_count = models.IntegerField(default='not_found.png', null=True, blank=True)
     cover = models.ImageField(upload_to='book_covers/', null=True, blank=True)
     slug = models.SlugField(unique=True)
 

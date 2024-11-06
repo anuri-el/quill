@@ -10,8 +10,11 @@
 
       {% for book in books %}
         <article class="book">
-          <img src="{{book.cover}}" alt="">
-          <p>{{book.cover}}</p>
+          <img
+            class="cover"
+            src="{{book.cover.url}}" 
+            alt="{{book.title}}" 
+            width=150 >
           <h2>
             <a href="{% url 'books:page' slug=book.slug %}">
               {{book.title}}
