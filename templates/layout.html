@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %} default title {% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/style.css'%}" />
+    <link rel="stylesheet" href="{% static 'css/tailwind.css'%}" />
     <script src="{% static 'js/main.js' %}" defer></script>
   </head>
   <body>
@@ -15,19 +15,15 @@
       <a href="{% url 'books:catalog' %}">books_list</a>
       {% if user.is_authenticated %}
       <a href="{% url 'books:new-review' %}">new review</a>
-        <form 
-          class="logout" 
-          action="{% url 'users:logout' %}"
-          method="post">
-            {% csrf_token %}
-            <button class="logout-button">logout</button>
-        </form>
+      <form class="logout" action="{% url 'users:logout' %}" method="post">
+        {% csrf_token %}
+        <button class="logout-button">logout</button>
+      </form>
       {% else %}
-        <a href="{% url 'users:register' %}">register</a>
-        <a href="{% url 'users:login' %}">login</a>
+      <a href="{% url 'users:register' %}">register</a>
+      <a href="{% url 'users:login' %}">login</a>
       {% endif %}
     </nav>
-    <main>{% block content %} 
-          {% endblock %}</main>
+    <main>{% block content %} {% endblock %}</main>
   </body>
 </html>
