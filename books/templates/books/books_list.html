@@ -8,20 +8,37 @@
     <section>
     <h1>books_list</h1>
 
+    <form method="get">
+      {{filter.form.as_p}}
+
+      {% comment %} <label for="sort_by">Sort By:</label>
+      <select name="sort_by" id="sort_by">
+        <option value="title" {% if sort_by == 'title' %}selected{% endif %}>Title</option>
+        <option value="price" {% if sort_by == 'price' %}selected{% endif %}>Price</option>
+        <option value="publication_date" {% if sort_by == 'publication_date' %}selected{% endif %}>Publication Date</option>
+      </select>
+
+      <label for="order">Order:</label>
+      <select name="order" id="order">
+        <option value="asc" {% if order == 'asc' %}selected{% endif %}>Ascending</option>
+        <option value="desc" {% if order == 'desc' %}selected{% endif %}>Descending</option>
+      </select> {% endcomment %}
+
+      <button type="submit">Apply Filters</button>
+    </form>
+
       {% for book in books %}
         <article class="book">
-          <img
-            class="cover"
-            src="{{book.cover.url}}" 
-            alt="{{book.title}}" 
-            width=150 >
-          <h2>
-            <a href="{% url 'books:page' slug=book.slug %}">
-              {{book.title}}
-            </a>
-          </h2>
-          <p>{{book.author}}</p>
-          <p>{{book.price}}</p>
+          <a href="{% url 'books:page' slug=book.slug %}">
+            <img
+              class="cover"
+              src="{{book.cover.url}}" 
+              alt="{{book.title}}" 
+              width=150 >
+            <h2>{{book.title}}</h2>
+            <p>{{book.author}}</p>
+            <p>{{book.price}}</p>
+          </a>
         </article>
       {% endfor %}
     </section>
