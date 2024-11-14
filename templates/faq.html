@@ -1,54 +1,66 @@
-{% extends "layout.html" %} {% block content %}
-<div>
-  <h1>Frequently Asked Questions</h1>
-  <div>
-    <div>
-      <div>
-        <h3>Will Seven Seas be publishing any more danmei series?</h3>
-        <p>
+{% extends "layout.html" %} 
+
+{% block title %}
+    FAQ - Quill
+{% endblock %}
+
+{% block content %}
+<section class="container mx-auto p-8">
+  <div class="mt-4">
+    <h1 class="text-3xl font-bold text-gray-800 mb-8 text-center">Frequently Asked Questions</h1>
+  </div>
+
+  <div class="max-w-3xl mx-auto space-y-8">
+    <div class="faq-item space-y-8">
+      <h3 class="text-xl font-semibold text-yellow-500">Will Seven Seas be publishing any more danmei series?</h3>
+      <p class="text-gray-700 mt-2">
           If our current books continue to sell well, that increases the chance
           that other danmei will be published officially in English! We're
           thrilled to already be bringing works over from multiple beloved
           authors. Thank you for your support! And feel free to suggest any
           licenses in our monthly survey, which can be found via our main
           website.
-        </p>
-      </div>
-      <hr />
-      <div>
-        <h3>Will you censor anything?</h3>
-        <p>
+      </p>
+    </div>
+    <hr class="border-gray-300">
+
+    <div class="faq-item">
+      <h3 class="text-xl font-semibold text-yellow-500">Will you censor anything?</h3>
+      <p class="text-gray-700 mt-2">
           We’re working closely with respected translators in the danmei
           community to ensure a smooth, faithful translation of the original
           works given to us by the rights holders, with all content
           included—including some material not available in other editions (such
           as short stories and sex scenes).
+      </p>
+    </div>
+    <hr class="border-gray-300">
+
+      <div class="faq-item">
+        <h3 class="text-xl font-semibold text-yellow-500">Will you include all the short stories and bonus chapters?</h3>
+        <p class="text-gray-700 mt-2">
+            Our editions will include all the material given to us by the rights
+            holders for publication in English. In most cases, that will include
+            short stories previously seen in print and digital editions, although
+            there are some exceptions (such as a story exclusive to another
+            publication).
         </p>
       </div>
-      <hr />
-      <div>
-        <h3>Will you include all the short stories and bonus chapters?</h3>
-        <p>
-          Our editions will include all the material given to us by the rights
-          holders for publication in English. In most cases, that will include
-          short stories previously seen in print and digital editions, although
-          there are some exceptions (such as a story exclusive to another
-          publication).
-        </p>
-      </div>
-      <hr />
-      <div>
-        <h3>Will the books have content warnings/ratings?</h3>
-        <p>
+      <hr class="border-gray-300">
+
+      <div class="faq-item">
+        <h3 class="text-xl font-semibold text-yellow-500">Will the books have content warnings/ratings?</h3>
+        <p class="text-gray-700 mt-2">
           Seven Seas does not include specific content warnings on novels.
           However, Seven Seas does print age ratings on the back of books with a
           high level of adult content, such as books rated Mature.
         </p>
       </div>
       <hr />
-      <div>
-        <h3>Why has the release date of a book changed?</h3>
-        <p>
+
+      <div class="faq-item">
+        <h3 class="text-xl font-semibold text-yellow-500">Why has the release date of a book changed?</h3>
+        <p class="text-gray-700 mt-2">
           There are many reasons why release dates may change, including factors
           that are outside of our control. We're working hard to get
           high-quality translations and illustrations of your favorite books out
@@ -56,9 +68,10 @@
         </p>
       </div>
       <hr />
-      <div>
-        <h3>Does this support the creator?</h3>
-        <p>
+
+      <div class="faq-item">
+        <h3 class="text-xl font-semibold text-yellow-500">Does this support the creator?</h3>
+        <p class="text-gray-700 mt-2">
           These are official English editions licensed from the rights holders,
           so every new copy purchased—ebook or paperback—will support the
           original creator, like the official editions in various other
@@ -66,20 +79,22 @@
         </p>
       </div>
       <hr />
-      <div>
-        <h3>Is the artwork "official"?</h3>
-        <p>
+
+      <div class="faq-item">
+        <h3 class="text-xl font-semibold text-yellow-500">Is the artwork "official"?</h3>
+        <p class="text-gray-700 mt-2">
           Yes! All the artwork published in our editions—from the character
           designs to the logos to the interior illustrations—must receive full
           approval from the rights holders.
         </p>
       </div>
       <hr />
-      <div>
-        <h3>
+
+      <div class="faq-item">
+        <h3 class="text-xl font-semibold text-yellow-500">
           Will you hire me to translate, edit, or draw for a danmei series?
         </h3>
-        <p>
+        <p class="text-gray-700 mt-2">
           Please stay tuned to our Jobs page to see when we're hiring. You can
           also share your resume or portfolio for consideration via the contact
           form on our main website. Please note that Seven Seas cannot reply to
@@ -87,27 +102,30 @@
         </p>
       </div>
       <hr />
-      <div>
-        <h3>Will there be an audiobook?</h3>
-        <p>
+
+      <div class="faq-item">
+        <h3 class="text-xl font-semibold text-yellow-500">Will there be an audiobook?</h3>
+        <p class="text-gray-700 mt-2">
           No audiobooks are available at this time, but we will be sure to make
           an announcement if that changes. You can find all of our current
           audiobooks under the Seven Seas Siren imprint here.
         </p>
       </div>
       <hr />
-      <div>
-        <h3>What about the manhua/comics?</h3>
-        <p>
+
+      <div class="faq-item">
+        <h3 class="text-xl font-semibold text-yellow-500">What about the manhua/comics?</h3>
+        <p class="text-gray-700 mt-2">
           Seven Seas is releasing the Grandmaster of Demonic Cultivation
           manhua/comic as well, with multiple volumes already available. More
           details here.
         </p>
       </div>
       <hr />
-      <div>
-        <h3>Can we order the books directly from you?</h3>
-        <p>
+
+      <div class="faq-item">
+        <h3 class="text-xl font-semibold text-yellow-500">Can we order the books directly from you?</h3>
+        <p class="text-gray-700 mt-2">
           Yes! Along with being distributed by Penguin Random House, the largest
           distributor in North America—who provides service to many retailers
           and bookstores around the world—we also recently launched the GOMANGA
@@ -116,6 +134,6 @@
       </div>
     </div>
   </div>
-</div>
+</section>
 
 {% endblock %}

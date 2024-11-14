@@ -1,3 +1,32 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+main{
+    min-height: 86vh;
+}
+
+.header{
+    position: sticky;
+    top: 0;
+}
+
+.footer{
+    bottom: 0;
+}
+
+.faq-item{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.book-details{
+    display: flex;
+    justify-content: space-around;
+    gap: 2rem;
+}
+
+.book-details img{
+    max-height: 25rem;
+}

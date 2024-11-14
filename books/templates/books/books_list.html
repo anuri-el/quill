@@ -1,50 +1,57 @@
 {% extends "layout.html" %} 
 
 {% block title %}
-    books_list
+  Catalog - Quill
 {% endblock %}
 
 {% block content %}
-    <section>
-    <h1>books_list</h1>
+<section class="container mx-auto py-8 px-4">
+  <h1 class="text-3xl font-extrabold text-gray-800 mb-6 text-center">Books Catalog</h1>
 
-    <form method="get">
-      {{filter.form.as_p}}
+  <form method="get" class="flex flex-wrap items-center justify-center mb-8 space-x-4">
+    {{filter.form.as_p}}
 
-      <label for="sort_by">Sort By:</label>
-      <select name="sort_by" id="sort_by">
+    <div class="flex items-center space-x-2">
+      <label for="sort_by" class="text-gray-700 font-medium">Sort By:</label>
+      <select name="sort_by" id="sort_by" class="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:border-yellow-500">
         <option value="title" {% if sort_by == 'title' %}selected{% endif %}>Title</option>
         <option value="price" {% if sort_by == 'price' %}selected{% endif %}>Price</option>
         <option value="publication_date" {% if sort_by == 'publication_date' %}selected{% endif %}>Publication Date</option>
       </select>
+    </div>
 
-      <label for="order">Order:</label>
-      <select name="order" id="order">
+    <div class="flex items-center space-x-2">
+      <label for="order" class="text-gray-700 font-medium">Order:</label>
+      <select name="order" id="order" class="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:border-yellow-500">
         <option value="asc" {% if order == 'asc' %}selected{% endif %}>Ascending</option>
         <option value="desc" {% if order == 'desc' %}selected{% endif %}>Descending</option>
       </select>
+    </div>
 
-      <button type="submit">Apply Filters</button>
-    </form>
+    <button type="submit" class="mt-8 inline-block bg-yellow-400 text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition duration-300 hover:bg-yellow-500" >Apply Filters</button>
+  </form>
 
-    {% if search_query %}
-      <p>Results for "{{ search_query }}":</p>
-    {% endif %}
+  {% if search_query %}
+    <p class="text-center text-gray-600 mb-8">Results for "{{ search_query }}":</p>
+  {% endif %}
 
-      {% for book in books %}
-        <article class="book">
-          <a href="{% url 'books:page' slug=book.slug %}">
-            <img
-              class="cover"
-              src="{{book.cover.url}}" 
-              alt="{{book.title}}" 
-              width=150
-              loading="lazy" >
-            <h2>{{book.title}}</h2>
-            <p>{{book.author}}</p>
-            <p>{{book.price}}</p>
-          </a>
-        </article>
-      {% endfor %}
-    </section>
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    {% for book in books %}
+      <article class="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300">
+        <a href="{% url 'books:page' slug=book.slug %}" class="block">
+          <img
+            class="w-full h-64 object-cover"
+            src="{{book.cover.url}}"
+            alt="{{book.title}}"
+            loading="lazy" >
+          <div class="p-4">
+            <h2 class="text-lg font-semibold text-gray-800 truncate">{{book.title}}</h2>
+            <p class="text-gray-500 mt-1">{{book.author}}</p>
+            <p class="text-yellow-600 font-medium mt-2">${{book.price}}</p>
+          </div>
+        </a>
+      </article>
+    {% endfor %}
+  </div>
+</section>
 {% endblock  %}

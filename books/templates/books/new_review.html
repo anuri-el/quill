@@ -1,14 +1,29 @@
 {% extends "layout.html" %} 
 
 {% block title %}
-    review for {{book.title}}
+    Review for {{book.title}} - Quill
 {% endblock %}
 
 {% block content %}
-    <h1>write a review for {{book.title}}</h1>
-    <form method="post">
-        {%csrf_token%}
-        {{form.as_p}}
-        <button type="submit">submit</button>
-    </form>
+    <section class="container mx-auto p-8 text-center">
+        <div class="mt-8">
+            <h1 class="text-3xl font-bold text-gray-800 mb-6">Write a Review for {{ book.title }}</h1>
+        </div>
+        <form method="post" class="bg-white shadow-md rounded-lg p-6 max-w-lg mx-auto border-t-4 border-yellow-500">
+            {%csrf_token%}
+            <div class="mb-4">
+                {{ form.rating.label_tag }}
+                {{ form.rating }}
+            </div>
+            <div class="mb-4">
+                <p>{{ form.review_text.label_tag }}</p>
+                {{ form.review_text }}
+            </div>
+            <div class="mb-4">
+                {{ form.recommendation.label_tag }}
+                {{ form.recommendation }}
+            </div>
+            <button type="submit" class="inline-block bg-yellow-400 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition duration-300 hover:bg-yellow-500">Submit</button>
+        </form>
+    </section>
 {% endblock  %}

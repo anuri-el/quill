@@ -6,40 +6,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %} default title {% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/tailwind.css'%}" />
+    <link rel="stylesheet" href="{% static 'css/style.css'%}" />
     <script src="{% static 'js/main.js' %}" defer></script>
   </head>
   <body>
-    <nav>
-      <a href="/">quill</a>
-      <a href="{% url 'books:catalog' %}">books_list</a>
-      <a href="{% url 'about' %}">about</a>
-      <a href="{% url 'faq' %}">faq</a>
+    <header class="header bg-white shadow-md z-10 py-3">
+      <div class="container mx-auto flex justify-between items-center">
+        <a href="/" class="text-3xl font-extrabold text-yellow-500">Quill</a>
+        <nav class="flex justify-between items-center space-x-4">
+          <a href="{% url 'books:catalog' %}" class="text-gray-700 transition duration-300 hover:text-yellow-500">Catalog</a>
+          <a href="{% url 'about' %}" class="text-gray-700 transition duration-300 hover:text-yellow-500">About</a>
+          <a href="{% url 'faq' %}" class="text-gray-700 transition duration-300 hover:text-yellow-500">FAQ</a>
 
-      <form action="{% url 'books:catalog' %}" method="get" class="search-form">
-        <input
-          type="text"
-          name="search"
-          placeholder="Search books..."
-          value="{{ request.GET.search }}"
-          aria-label="Search books"
-          class="search-input" />
-        <button type="submit" class="search-button">Search</button>
-      </form>
+          <form action="{% url 'books:catalog' %}" method="get" class="search-form">
+            <input
+              type="text"
+              name="search"
+              placeholder="Search books..."
+              value="{{ request.GET.search }}"
+              aria-label="Search books"
+              class="search-input" />
+            <button type="submit" class="search-button">
+              <img
+                src="{% static 'search.svg' %}"
+                alt="search-icon"
+                width=17 >
+            </button>
+          </form>
 
-      {% if user.is_authenticated %}
-      {% comment %} <a href="{% url 'books:new-review' %}">new review</a> {% endcomment %}
-      <form class="logout" action="{% url 'users:logout' %}" method="post">
-        {% csrf_token %}
-        <button class="logout-button">logout</button>
-      </form>
-      {% else %}
-      <a href="{% url 'users:register' %}">register</a>
-      <a href="{% url 'users:login' %}">login</a>
-      {% endif %}
-    </nav>
+          {% if user.is_authenticated %}
+          <form class="inline" action="{% url 'users:logout' %}" method="post">
+            {% csrf_token %}
+            <button class="inline-block bg-yellow-400 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition duration-300 hover:bg-yellow-500">Log Out</button>
+          </form>
+          {% else %}
+          <a href="{% url 'users:register' %}" class="text-gray-700 transition duration-300 hover:text-yellow-500">Registration</a>
+          <a href="{% url 'users:login' %}" class="text-gray-700 transition duration-300 hover:text-yellow-500">Log In</a>
+          {% endif %}
+        </nav>
+      </div>
+    </header>
     <main>{% block content %} {% endblock %}</main>
-    <footer class="text-center py-6">
-      <p>&copy; 2024 Quill Bookstore</p>
-    </footer>
+    <footer class="footer bg-gray-800 py-8 text-gray-400">
+      <div class="container mx-auto text-center">
+          <p>&copy; 2024 Quill. All rights reserved.</p>
+          <nav class="space-x-4 mt-4">
+              <a href="/" class="hover:text-yellow-500">Home</a>
+              <a href="{% url 'about' %}" class="hover:text-yellow-500">About</a>
+              <a href="{% url 'faq' %}" class="hover:text-yellow-500">FAQ</a>
+          </nav>
+      </div>
+  </footer>
   </body>
 </html>

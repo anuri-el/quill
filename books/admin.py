@@ -10,7 +10,7 @@ class BookAdmin(admin.ModelAdmin):
 @admin.register(Author)
 class AuthorAdmin(admin.ModelAdmin):
     search_fields = ['first_name', 'last_name'] 
-    list_display = ('first_name', 'last_name', 'nationality', 'birth_date')  
+    list_display = ( 'last_name', 'first_name', 'nationality', 'birth_date')  
     list_filter = ('nationality', 'birth_date')  
 
 @admin.register(Publisher)
