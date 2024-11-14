@@ -43,8 +43,8 @@ class Publisher(models.Model):
             MaxValueValidator(datetime.now().year)
         ])
     description = models.TextField()
-    contact_phone = models.CharField(max_length=25)
-    site = models.CharField(max_length=255)
+    contact_phone = models.CharField(max_length=25, null=True, blank=True)
+    site = models.CharField(max_length=255, null=True, blank=True)
     slug = models.SlugField(unique=True)
 
     def __str__(self):
