@@ -8,10 +8,10 @@
     <h1>register</h1>
     <form 
         class = "form-with-validation"
-        action="/users/register/" 
+        action="{% url 'users:register' %}" 
         method="post">
         {% csrf_token %}
-        {{form}}
-        <button>submit</button>
+        {{form.as_p}}
+        <button type="submit">submit</button>
     </form>
 {% endblock  %}
