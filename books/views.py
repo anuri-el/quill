@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Q
 from django_filters import rest_framework as filters
-from .models import Book
+from .models import Book, Review
 from .filters import BookFilter
+from .forms import ReviewForm
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -37,3 +38,19 @@ def book_page(request, slug):
 @login_required(login_url="/users/login/")
 def review_new(request):
     return render(request, 'books/review_new.html')
+
+@login_required
+def new_review(request, book_slug):
+    book = get_object_or_404(Book, slug=book_slug)
+
+    if request.method == "POST":
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.user = request.user
+            review.book = book
+            review.save()
+            return redirect('books:page', slug=book.slug)
+    else:
+        form = ReviewForm()
+    return render(request, 'books/new_review.html', {'form': form, 'book': book})

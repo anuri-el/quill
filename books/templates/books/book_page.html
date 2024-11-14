@@ -17,6 +17,24 @@
         <p>isbn: {{book.isbn}}</p>
         <p>description: {{book.description}}</p>        
         <p>price:{{book.price}}</p>
-
     </section>
+
+    <section>
+        <h2>Review</h2>
+        {% for review in book.reviews.all %}
+            <div>
+                <p>{{review.user.username}} rated it {{review.rating}} stars</p>
+                <p>{{review.review_text}}</p>
+                <p>posted on {{review.review_date}}</p>
+            </div>
+        {% empty %}
+            <p>No reviews yet. Be the first to review!</p>
+        {% endfor %}
+    </section>
+
+    {% if user.is_authenticated %}
+        <a href="{% url 'books:new-review' book_slug=book.slug %}">Write a Review</a>
+    {% else %}
+        <p><a href="{% url 'users:login' %}">Log in</a> to write a review.</p>
+    {% endif %}
 {% endblock  %}

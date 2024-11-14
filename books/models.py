@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 from django.core.validators import MinValueValidator, MaxValueValidator
 from datetime import datetime
 
@@ -62,19 +63,21 @@ class Genre(models.Model):
         return self.title
 
 
-# class Reviewing(models.Model):
-#     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
-#     book = models.ForeignKey('Book', on_delete=models.CASCADE, null=True, blank=True)
-#     rating = models.PositiveIntegerField(null=True, blank=True, validators=[
-#             MinValueValidator(0),
-#             MaxValueValidator(5)
-#         ])
-#     review_text = models.TextField()
-#     review_date = models.DateField(auto_now_add=True, null=True, blank=True)
-#     recommendation = models.BooleanField(null=True, blank=True)
-#     slug = models.SlugField(unique=True)
+class Review(models.Model):
+    book = models.ForeignKey('Book', on_delete=models.CASCADE, null=True, blank=True, related_name="reviews")
+    # user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
+    rating = models.PositiveIntegerField(choices=[(i, i) for i in range(1, 6)])
+    # rating = models.PositiveIntegerField(null=True, blank=True, validators=[
+    #         MinValueValidator(0),
+    #         MaxValueValidator(5)
+    #     ])
+    review_text = models.TextField(null=True, blank=True)
+    review_date = models.DateField(auto_now_add=True, null=True, blank=True)
+    recommendation = models.BooleanField(null=True, blank=True)
+    # slug = models.SlugField(unique=True)
 
-#     def __str__(self):
-#         return {self.title}
+    def __str__(self):
+        return f"{self.user} review on {self.book.title} - {self.rating} stars"
 
 
