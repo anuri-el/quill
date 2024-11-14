@@ -1,9 +1,66 @@
-{% extends "layout.html" %} 
+{% extends "layout.html" %}
 
-{% block title %}
-    home
-{% endblock %}
+{% block title %} home {% endblock %} 
 
 {% block content %}
-    <h1>home</h1>
-{% endblock  %}
+<div class="hero">
+  <h1>home</h1>
+  <p>Your one-stop shop for books of all genres</p>
+</div>
+
+<main>
+  <section>
+    <h2>releases</h2>
+    <div class="book-grid">
+      {% for book in recent_books %}
+      <article class="book">
+        <a href="{% url 'books:page' slug=book.slug %}">
+          <img
+            src={{book.cover.url}}
+            alt="{{book.title}}"
+            width=150 />
+          <h3>{{book.title}}</h3>
+          <p>{{book.publication_date}}</p>
+        </a>
+      </article>
+      {% empty %}
+        <p>no releases</p>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section>
+    <h2>Coming Soon</h2>
+    <div>
+      {% for book in coming_soon_books %}
+        <article class="book">
+          <a href="{% url 'books:page' slug=book.slug %}">
+            <img
+              src={{book.cover.url}}
+              alt="{{book.title}}"
+              width=150 />
+            <h3>{{book.title}}</h3>
+            <p>{{book.publication_date}}</p>
+            <p><em>Available for pre-order</em></p>
+          </a>
+        </article>
+      {% empty %}
+        <p>no</p>
+      {% endfor %}
+    </div>
+  </section>
+  
+  <section>
+    <h2>Popular Genres</h2>
+    <ul>
+      {% for genre in popular_genres %}
+      <li>
+        <a href="{% url 'books:catalog' %}?genre={{ genre.id }}">{{ genre.title }}</a>
+      </li>
+      {% empty %}
+        <p>No genres to display.</p>
+      {% endfor %}
+    </ul>
+  </section>
+</main>
+{% endblock %}
