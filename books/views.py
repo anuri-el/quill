@@ -6,6 +6,17 @@ from .filters import BookFilter
 from .forms import ReviewForm
 from django.contrib.auth.decorators import login_required
 
+def chunked(iterable, size):
+    chunk = []
+    for item in iterable:
+        chunk.append(item)
+        if len(chunk) == size:
+            yield chunk
+            chunk = []
+    if chunk:  
+        yield chunk
+
+
 # Create your views here.
 def books_list(request):
     books = Book.objects.all()
@@ -28,8 +39,10 @@ def books_list(request):
         books = book_filter.qs.filter(pk__in=books).order_by(sort_by)
     else:
         books = book_filter.qs.filter(pk__in=books)
+    
+    sorted_books = list(chunked(books, 5))
 
-    return render(request, 'books/books_list.html', {'books': books, 'filter': book_filter, 'sort_by': sort_by, 'order': order, 'search_query': search_query})
+    return render(request, 'books/books_list.html', {'sorted_books': sorted_books, 'filter': book_filter, 'sort_by': sort_by, 'order': order, 'search_query': search_query})
 
 def book_page(request, slug):
     book = Book.objects.get(slug=slug)

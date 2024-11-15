@@ -13,7 +13,7 @@
 
     <div class="flex items-center space-x-2">
       <label for="sort_by" class="text-gray-700 font-medium">Sort By:</label>
-      <select name="sort_by" id="sort_by" class="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:border-yellow-500">
+      <select name="sort_by" id="sort_by" class="buttons_fire">
         <option value="title" {% if sort_by == 'title' %}selected{% endif %}>Title</option>
         <option value="price" {% if sort_by == 'price' %}selected{% endif %}>Price</option>
         <option value="publication_date" {% if sort_by == 'publication_date' %}selected{% endif %}>Publication Date</option>
@@ -22,7 +22,7 @@
 
     <div class="flex items-center space-x-2">
       <label for="order" class="text-gray-700 font-medium">Order:</label>
-      <select name="order" id="order" class="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:border-yellow-500">
+      <select name="order" id="order" class="buttons_fire">
         <option value="asc" {% if order == 'asc' %}selected{% endif %}>Ascending</option>
         <option value="desc" {% if order == 'desc' %}selected{% endif %}>Descending</option>
       </select>
@@ -36,21 +36,25 @@
   {% endif %}
 
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-    {% for book in books %}
-      <article class="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300">
-        <a href="{% url 'books:page' slug=book.slug %}" class="block">
+    {% for books in sorted_books %}
+    <div class="little_books_container">
+      {% for book in books %}
+      <article class="book_container">
+        <a href="{% url 'books:page' slug=book.slug %}" class="book_container">
           <img
-            class="w-full h-64 object-cover"
+            class="responsive-image"
             src="{{book.cover.url}}"
             alt="{{book.title}}"
             loading="lazy" >
-          <div class="p-4">
-            <h2 class="text-lg font-semibold text-gray-800 truncate">{{book.title}}</h2>
-            <p class="text-gray-500 mt-1">{{book.author}}</p>
-            <p class="text-yellow-600 font-medium mt-2">${{book.price}}</p>
+          <div class="">
+            <h2 class="">{{book.title}}</h2>
+            <p class="">{{book.author}}</p>
+            <p class="">${{book.price}}</p>
           </div>
         </a>
       </article>
+      {% endfor %}
+    </div>
     {% endfor %}
   </div>
 </section>

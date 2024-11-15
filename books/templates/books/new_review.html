@@ -11,17 +11,25 @@
         </div>
         <form method="post" class="bg-white shadow-md rounded-lg p-6 max-w-lg mx-auto border-t-4 border-yellow-500">
             {%csrf_token%}
-            <div class="mb-4">
+            <div class="row-review">
                 {{ form.rating.label_tag }}
+                <p class="buttons_fire2_0" style="width: 100px; position: static;">
                 {{ form.rating }}
+                </p>
             </div>
-            <div class="mb-4">
+            <div>
                 <p>{{ form.review_text.label_tag }}</p>
+                <p>
                 {{ form.review_text }}
+                </p>
             </div>
-            <div class="mb-4">
+            <div class="row-review">
+                <p>
                 {{ form.recommendation.label_tag }}
+                </p>
+                <p class="buttons_fire2_0" style="width: 100px; position: static;">
                 {{ form.recommendation }}
+                </p>
             </div>
             <button type="submit" class="inline-block bg-yellow-400 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition duration-300 hover:bg-yellow-500">Submit</button>
         </form>
