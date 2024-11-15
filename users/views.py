@@ -4,15 +4,6 @@ from django.contrib.auth import login, logout
 from .forms import CustomUserCreationForm
 
 # Create your views here.
-# def register_view(request):
-#     if request.method == "POST":
-#         form = UserCreationForm(request.POST)
-#         if form.is_valid():
-#             login(request, form.save())
-#             return redirect("books:catalog")
-#     else:
-#         form = UserCreationForm()
-#     return render(request, 'users/register.html', {"form" : form})
 
 def register_view(request):
     if request.method == "POST":

@@ -6,50 +6,54 @@
 
 {% block content %}
 <section class="container mx-auto py-8 px-4">
-  <h1 class="text-3xl font-extrabold text-gray-800 mb-6 text-center">Books Catalog</h1>
+  <div class="mb-4">
+    <h1 class="text-3xl font-extrabold text-gray-800 mb-8 text-center">Books Catalog</h1>
+  </div>
 
   <form method="get" class="flex flex-wrap items-center justify-center mb-8 space-x-4">
     {{filter.form.as_p}}
 
-    <div class="flex items-center space-x-2">
-      <label for="sort_by" class="text-gray-700 font-medium">Sort By:</label>
-      <select name="sort_by" id="sort_by" class="buttons_fire">
+    <div class="space-y-2 text-center sorting">
+      <label for="sort_by" class="text-gray-700 font-medium labl">Sort By:</label>
+      <select name="sort_by" id="sort_by" class="buttons_fire w-full select-sort">
         <option value="title" {% if sort_by == 'title' %}selected{% endif %}>Title</option>
         <option value="price" {% if sort_by == 'price' %}selected{% endif %}>Price</option>
         <option value="publication_date" {% if sort_by == 'publication_date' %}selected{% endif %}>Publication Date</option>
       </select>
     </div>
 
-    <div class="flex items-center space-x-2">
-      <label for="order" class="text-gray-700 font-medium">Order:</label>
-      <select name="order" id="order" class="buttons_fire">
+    <div class="space-y-2 text-center sorting">
+      <label for="order" class="text-gray-700 font-medium labl">Order:</label>
+      <select name="order" id="order" class="buttons_fire w-full select-sort">
         <option value="asc" {% if order == 'asc' %}selected{% endif %}>Ascending</option>
         <option value="desc" {% if order == 'desc' %}selected{% endif %}>Descending</option>
       </select>
     </div>
 
-    <button type="submit" class="mt-8 inline-block bg-yellow-400 text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition duration-300 hover:bg-yellow-500" >Apply Filters</button>
+    <div class="w-full flex justify-center">
+      <button type="submit" class="mt-8 inline-block bg-yellow-400 text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition duration-300 hover:bg-yellow-500" >Apply Filters</button>
+    </div>
   </form>
 
   {% if search_query %}
-    <p class="text-center text-gray-600 mb-8">Results for "{{ search_query }}":</p>
+    <p class="text-center text-gray-600">Results for "{{ search_query }}":</p>
   {% endif %}
 
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
     {% for books in sorted_books %}
     <div class="little_books_container">
       {% for book in books %}
-      <article class="book_container">
+      <article class="max-w-xs w-60 bg-white rounded-lg shadow-md m-4 p-6 book-card">
         <a href="{% url 'books:page' slug=book.slug %}" class="book_container">
           <img
-            class="responsive-image"
+            class="w-full h-64 object-cover rounded-t-lg"
             src="{{book.cover.url}}"
             alt="{{book.title}}"
             loading="lazy" >
-          <div class="">
-            <h2 class="">{{book.title}}</h2>
-            <p class="">{{book.author}}</p>
-            <p class="">${{book.price}}</p>
+          <div class="p-4 text-center">
+            <h2 class="text-xl font-semibold text-gray-700">{{book.title}}</h2>
+            <p class="text-gray-500">{{book.author}}</p>
+            <p class="text-gray-600 mt-2">${{book.price}}</p>
           </div>
         </a>
       </article>

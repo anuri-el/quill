@@ -49,10 +49,10 @@
       >
       to write a review.
     </p>
-    {% endif %} {% for review in book.reviews.all %}
-    <div
-      class="bg-white shadow-md rounded-lg p-4 mb-4 border-l-4 border-yellow-500"
-    >
+    {% endif %} 
+    
+    {% for review in book.reviews.all %}
+    <div class="bg-white shadow-md rounded-lg p-4 mb-4 border-l-4 border-yellow-500" >
       <p class="text-gray-800 font-semibold">
         {{ review.user.username }} rated it {{ review.rating }} stars
       </p>
@@ -62,7 +62,7 @@
       </p>
     </div>
     {% empty %}
-    <p class="text-gray-500 mt-4">No reviews yet. Be the first to review!</p>
+      <p class="text-gray-500 mt-4">No reviews yet. Be the first to review!</p>
     {% endfor %}
   </section>
 </div>

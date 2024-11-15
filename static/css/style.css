@@ -2,43 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.row-review{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin: 5px;
-}
-
-.buttons_fire2_0{
-    border: 1px solid black; 
-}
-
-.buttons_fire {
-    border: 1px solid #facc15;        
-    background-color: rgba(250,204,21,255); 
-    border-radius: 5px;        
-    color: white;      
-}
-
-.responsive-image {
-    width: 75%;          
-    height: auto;         
-    object-fit: cover;   
-}
-
-
-.book_container{
-    width: 30 rem !important;
-}
-
-.little_books_container{
-    margin: 2%;
-        display: grid;                
-        grid-template-columns: repeat(auto-fit, minmax(10rem, 17.2rem));  
-        gap: 1rem;                     
-    
-}
-
 main{
     min-height: 86vh;
 }
@@ -46,6 +9,7 @@ main{
 .header{
     position: sticky;
     top: 0;
+    z-index: 15;
 }
 
 .footer{
@@ -65,4 +29,79 @@ main{
 
 .book-details img{
     max-height: 25rem;
+}
+
+.book-card{
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.book-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+  }
+
+.row-review{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 5px;
+}
+
+.buttons_fire2_0{
+    border: 1px solid black; 
+}
+
+
+.responsive-image {
+    width: 75%;          
+    height: auto;         
+    object-fit: cover;   
+}
+
+
+.book_container{
+    width: 30 rem !important;
+}
+
+.little_books_container{
+    margin: 2%;
+    display: grid;                
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 17.2rem));  
+    gap: 1rem;                     
+}
+
+.form-field{
+    display: block;
+    margin: auto;
+    opacity: 0.70;
+    width: 50%;
+    margin-top: 0.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.buttons_fire {
+    display: block;
+    border: none;        
+    background-color: rgba(243, 244, 246, 0.9); 
+    border-radius: 5px;        
+    color: black;
+    width: 75%;
+    position: relative;
+    right: 1.5rem;
+}
+
+.sorting{
+    position: relative;
+    bottom: 0.3rem;
+}
+
+.labl{
+    position: relative;
+    right: 4rem;
+}
+
+.select-sort{
+    padding: 0.2rem 0.5rem;
+    width: 8rem;
+    opacity: 0.75;
 }

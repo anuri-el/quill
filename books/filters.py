@@ -6,45 +6,45 @@ class BookFilter(FilterSet):
     title = CharFilter(
         lookup_expr='icontains', 
         label='Title', 
-        widget=TextInput(attrs={'class': 'form-control buttons_fire', 'placeholder': ''})
+        widget=TextInput(attrs={'class': 'form-control buttons_fire form-field', 'placeholder': ''})
     )
     author = CharFilter(
         field_name='author__last_name', 
         lookup_expr='icontains', 
-        label='Author Last Name', 
-        widget=TextInput(attrs={'class': 'form-control buttons_fire', 'placeholder': ''})
+        label='Author', 
+        widget=TextInput(attrs={'class': 'form-control buttons_fire form-field', 'placeholder': ''})
     )
     genre = ModelChoiceFilter(
         queryset=Genre.objects.all(), 
         label='Genre', 
-        widget=Select(attrs={'class': 'form-control buttons_fire'})
+        widget=Select(attrs={'class': 'form-control buttons_fire form-field'})
     )
     min_price = NumberFilter(
         field_name='price', 
         lookup_expr='gte', 
         label='Min Price', 
-        widget=TextInput(attrs={'class': 'form-control buttons_fire', 'placeholder': ''})
+        widget=TextInput(attrs={'class': 'form-control buttons_fire form-field', 'placeholder': ''})
     )
     max_price = NumberFilter(
         field_name='price', 
         lookup_expr='lte', 
         label='Max Price', 
-        widget=TextInput(attrs={'class': 'form-control buttons_fire', 'placeholder': ''})
+        widget=TextInput(attrs={'class': 'form-control buttons_fire form-field', 'placeholder': ''})
     )
     language = CharFilter(
         lookup_expr='icontains', 
         label='Language', 
-        widget=TextInput(attrs={'class': 'form-control buttons_fire', 'placeholder': ''})
+        widget=TextInput(attrs={'class': 'form-control buttons_fire form-field', 'placeholder': ''})
     )
     min_pub_year = NumberFilter(
         method='filter_min_pub_year', 
         label='Publish After', 
-        widget=TextInput(attrs={'class': 'form-control buttons_fire', 'placeholder': ''})
+        widget=TextInput(attrs={'class': 'form-control buttons_fire form-field', 'placeholder': ''})
     )
     max_pub_year = NumberFilter(
         method='filter_max_pub_year', 
         label='Publish Before', 
-        widget=TextInput(attrs={'class': 'form-control buttons_fire', 'placeholder': ''})
+        widget=TextInput(attrs={'class': 'form-control buttons_fire form-field', 'placeholder': ''})
     )
 
     def filter_min_pub_year(self, queryset, name, value):
